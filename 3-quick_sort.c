@@ -17,47 +17,55 @@ void int_swap(int *a, int *b)
 /**
  * l_partition - implementing the quicksort
  * @array: array of integer
- * @low: low integer
- * @high: high integer
+ * @size: size of arrays
+ * @left: beginning integer
+ * @right: ending integer
  * Return: partition index
 */
 
-int l_partition(int *array, int low, int high)
+int l_partition(int *array, size_t size, int left, int right)
 {
-        int sort = array[high];
-        int a = low - 1;
-        int b = 0;
+	int *element, a, b;
 
-        for (b = low; b < high; b++)
-        {
-                if (array[b] < sort)
-                {
-                        b++;
-                        int_swap(&array[a], &array[b]);
-                }
-        }
-        print_array(array, high - low + 1);
-        int_swap(&array[a + 1], &array[high]);
-        return (a + 1);
+	element = array + right;
+
+	for (a = b = left; b < right; b++)
+	{
+		if (array[b] < *element)
+		{
+			if (a < b)
+			{
+				int_swap(array + b, array + a);
+				print_array(array, size);
+			}
+			a++;
+		}
+	}
+	if (array[a] > *element)
+	{
+		int_swap(array + a, element);
+		print_array(array, size);
+	}
+	return (a);
 }
 
 /**
  * lomuto - implementing the lomuto partition scheme 
  * @array: array of int
- * @low: low integer
- * @high: high integer
- * Return: 0
+ * @size: size of the array
+ * @left: start of index
+ * @right: the end of index
  */
 
-void lomuto(int *array, size_t size, int low, int high)
+void lomuto(int *array, size_t size, int left, int right)
 {
 	int p;
 
-	if (high - low > 0)
+	if (right - left > 0)
 	{
-		p = l_partition(array, low, high);
-		lomuto(array, size, low, p - 1);
-		lomuto(array, size, p + 1, high);
+		p = l_partition(array, size, left, right);
+		lomuto(array, size, left, p - 1);
+		lomuto(array, size, p + 1, right);
 	}
 }
 
@@ -75,4 +83,3 @@ void quick_sort(int *array, size_t size)
 
         lomuto(array, size, 0, size - 1);
 }
-
