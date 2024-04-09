@@ -9,9 +9,9 @@
 
 void int_swap(int *a, int *b)
 {
-        int tmp = *a;
-        *a = *b;
-        *b = tmp;
+int tmp = *a;
+*a = *b;
+*b = tmp;
 }
 
 /**
@@ -50,7 +50,7 @@ int l_partition(int *array, size_t size, int left, int right)
 }
 
 /**
- * lomuto - implementing the lomuto partition scheme 
+ * lomuto - implementing the lomuto partition scheme
  * @array: array of int
  * @size: size of the array
  * @left: start of index
@@ -70,7 +70,7 @@ void lomuto(int *array, size_t size, int left, int right)
 }
 
 /**
- * quick_sort - function that sorts an array of integers in ascending order using quick sort
+ * quick_sort - function that sorts an array of integers
  * @array: array
  * @size: size
  * Return: 0
@@ -78,7 +78,7 @@ void lomuto(int *array, size_t size, int left, int right)
 
 void quick_sort(int *array, size_t size)
 {
-        if (array == NULL || size < 2)
+	if (array == NULL || size < 2)
 		return;
 
         lomuto(array, size, 0, size - 1);
