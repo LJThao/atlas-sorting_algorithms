@@ -9,15 +9,14 @@
 
 void int_swap(int *a, int *b)
 {
-        int tmp = *a;
-        *a = *b;
-        *b = tmp;
+int tmp = *a;
+*a = *b;
+*b = tmp;
 }
-
 /**
  * bubble_sort - function that sorts an array of ints using bubble sort.
  * @array: array
- * @size: size  
+ * @size: size
  * Return: 0
  */
 
